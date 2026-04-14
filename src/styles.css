@@ -1,0 +1,266 @@
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #303030;
+  background: #f5f3ef;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(244, 239, 232, 0.94)),
+    radial-gradient(circle at top left, rgba(214, 208, 198, 0.28), transparent 40%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page-shell {
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.panel {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.room-input-wrap,
+.action-button {
+  height: 64px;
+  border: 3px solid #606060;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 2px 0 rgba(96, 96, 96, 0.08);
+}
+
+.room-input-wrap {
+  width: min(100%, 248px);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+}
+
+.room-input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 20px;
+  color: #4a4a4a;
+}
+
+.room-input::placeholder {
+  color: #4a4a4a;
+  opacity: 1;
+}
+
+.action-button {
+  min-width: 138px;
+  padding: 0 24px;
+  font-size: 20px;
+  color: #414141;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.action-button:disabled,
+.room-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.status-bar,
+.summary-card,
+.legend {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.status-bar p,
+.summary-card p,
+.legend span {
+  margin: 0;
+  font-size: 16px;
+}
+
+.building-layout {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 44px;
+}
+
+.stairs-column {
+  min-height: 474px;
+  border: 3px solid #606060;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.rooms-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.floor-row {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(40px, 1fr));
+  gap: 14px;
+}
+
+.room-cell {
+  height: 34px;
+  border: 3px solid #606060;
+  background: rgba(255, 255, 255, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.room-cell:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.room-cell:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.room-cell:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.room-cell span {
+  font-size: 11px;
+  color: transparent;
+}
+
+.room-cell-pending {
+  background: #d8c18a;
+  border-color: #a58f5c;
+}
+
+.room-cell-pending:hover:not(:disabled) {
+  background: #e0cc9a;
+}
+
+.room-cell-occupied {
+  background: #6f6b66;
+  border-color: #585550;
+}
+
+.room-cell-occupied:hover {
+  background: #6f6b66;
+  transform: none;
+}
+
+.room-cell-selected {
+  background: #ca8b5b;
+  border-color: #ab6d3f;
+}
+
+.room-cell-selected:hover:not(:disabled) {
+  background: #d49968;
+}
+
+.legend {
+  align-items: center;
+}
+
+.legend-box {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #606060;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.legend-box-available {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.legend-box-occupied {
+  background: #6f6b66;
+}
+
+.legend-box-pending {
+  background: #d8c18a;
+}
+
+.legend-box-selected {
+  background: #ca8b5b;
+}
+
+.summary-card {
+  padding: 18px 20px;
+  border: 2px solid rgba(96, 96, 96, 0.4);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 900px) {
+  .building-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .stairs-column {
+    min-height: 84px;
+  }
+
+  .floor-row {
+    grid-template-columns: repeat(5, minmax(40px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .page-shell {
+    padding: 18px;
+  }
+
+  .controls {
+    gap: 12px;
+  }
+
+  .room-input-wrap,
+  .action-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .floor-row {
+    gap: 10px;
+    grid-template-columns: repeat(4, minmax(40px, 1fr));
+  }
+}
